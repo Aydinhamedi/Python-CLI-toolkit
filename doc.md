@@ -100,7 +100,28 @@ THEFILENAME : THEFUNCNAME : the command to run it ~ arg
 - `THEFILENAME`: This is the name of the Python file you created (without the .py extension).
 - `THEFUNCNAME`: This is the name of the function in the Python file.
 - `the command to run it`: This is the command that users will enter in the CLI to run the function.
-- `arg`: This is the argument that the function takes. It should be a list containing the arguments passed to the command.
+- `arg`: This is the argument that the function takes. It should be a list containing the arguments passed to the command.\
+    here is a list of global variables that you can use when adding your own modules to the Python CLI Toolkit:
+
+    - `CLI_NAME`: This is the name of your CLI. You can change it to whatever you want.
+
+    - `CLI_Ver`: This is the version of your CLI. You can change it to whatever you want.
+
+    - `directory`: This is the directory where your modules will be stored. It is set to 'Data\modules' by default.
+
+    - `imported_modules`: This is a dictionary that stores the imported modules. The keys are the module names and the values are the module objects.
+
+    - `command_mappings`: This is a dictionary that maps command names to their corresponding functions. The keys are the command names and the values are tuples containing the filename, function name, and argument names.
+
+    - `CMLI_args`: This is a list that contains the arguments passed to the command. The arguments are strings.
+
+    - `command_tuple`: This is a tuple containing the names of all available commands. You can add your commands here.
+
+    - `cmd_descriptions` and `cmd_descriptions_other`: These are dictionaries that map command names to their descriptions. You can add your command descriptions here.
+
+    - `Debug`: This is a function that prints debug information. It is turned off by default, but you can turn it on by entering the `debug` command in the CLI.
+
+    These global variables are used throughout the code to manage the CLI. You can use them in your modules to interact with the CLI. For example, you can use `CMLI_args` to access the arguments passed to your command, or `Debug` to print debug information.
 
 For example, to specify the `add` command from the `math_module.py` file, you would add the following line to `modules.txt`:
 
