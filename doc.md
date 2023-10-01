@@ -8,18 +8,18 @@ This Python CLI Toolkit is a powerful tool for creating command-line interfaces 
 
 ## Getting Started
 
-To start using the toolkit, you need to modify the following sections of the code:
-
-### Global Variables
+To start using the toolkit, you need to modify the following sections of the code:\
+(`Data/CLI_main.py`)
 
 ```python
 #CONST SYS
 CLI_NAME = '`CHANGE THE NAME`' # your CLI name
 CLI_Ver = '0.00' # your CLI ver
 directory = 'Data\modules'
-#normal global
-imported_modules = {}
-command_mappings = {}
+#other global
+imported_modules = {} #DO NOT CHANGE
+command_mappings = {} #DO NOT CHANGE
+CMLI_args = [] #DO NOT CHANGE
 #Commands>>>
 command_tuple = (
     'help', # help
