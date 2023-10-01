@@ -13,14 +13,14 @@ from PrintColor.Print_color import print_Color
 CLI_NAME = '`CHANGE THE NAME`' # your CLI name
 CLI_Ver = '0.00' # your CLI ver
 directory = 'Data\modules'
-#normal global
+#Other global
 imported_modules = {}
 command_mappings = {}
 CMLI_args = []
 #Commands>>>
 command_tuple = (
-    'add',
     'help', # help
+    'debug', # Debug
     'exit', # Quit the CLI
     'clear' # Clear the CLI
 )
@@ -34,6 +34,7 @@ cmd_descriptions_other = {
 }
 #other>>>
 python_files = glob.glob(os.path.join(directory, "*.py"))
+Debug = lambda DEBUG_IF : None
 #funcs(INTERNAL)>>> (DO NOT CHANGE)
 #CLI_IM
 def CLI_IM(CLII: bool = True):
@@ -96,11 +97,13 @@ def main():
         input_array = CLI_IM()
         command = input_array[0]
         global CMLI_args
+        global Debug
         try:
             CMLI_args = input_array[1:]
         except IndexError:
             CMLI_args = []
         if command in command_mappings:
+            
             filename, funcname, argnames = command_mappings[command]
             module_name = os.path.splitext(filename)[0]
             args = [globals()[argname] for argname in argnames]
@@ -112,6 +115,9 @@ def main():
                     print(CLI_Info)
                 case 'exit':
                     raise KeyboardInterrupt
+                case 'debug':
+                    Debug = lambda DEBUG_IF : print('DEBUG INFO{' + str(DEBUG_IF) + '}')
+                    print('Debug mode is ON...')
                 case _:
                     IEH(id = 'F[main],L1[WT],L2[MI],Error[nothing matched]', stop = False, DEV = False)
 #start>>>
