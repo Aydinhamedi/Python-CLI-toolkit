@@ -2,6 +2,7 @@
 import os
 import sys
 import glob
+import trace
 import difflib
 import inspect
 import importlib.util
@@ -13,10 +14,11 @@ from PrintColor.Print_color import print_Color
 CLI_NAME = '`CHANGE THE NAME`' # your CLI name
 CLI_Ver = '0.00' # your CLI ver
 directory = 'Data\modules'
-#Other global
-imported_modules = {}
-command_mappings = {}
+#other global
+imported_modules = {} #DO NOT CHANGE
+command_mappings = {} #DO NOT CHANGE
 CMLI_args = []
+Debug_m = False
 #Commands>>>
 command_tuple = (
     'help', # help
@@ -34,7 +36,6 @@ cmd_descriptions_other = {
 }
 #other>>>
 python_files = glob.glob(os.path.join(directory, "*.py"))
-Debug = lambda DEBUG_IF : None
 #funcs(INTERNAL)>>> (DO NOT CHANGE)
 #CLI_IM
 def CLI_IM(CLII: bool = True):
@@ -66,6 +67,12 @@ def IEH(id: str = 'Unknown', stop: bool = True, DEV: bool = True):
             print_Color('detailed error message:', ['yellow'])
             traceback.print_exc()
     if stop: sys.exit('SYS EXIT|ERROR: Internal|by Internal Error Handler')
+#Debug
+def Debug(ID, DEBUG_IF, SFL: bool = True):
+    if Debug_m:
+        frame_info = inspect.currentframe()
+        location = f'{inspect.stack()[1].filename}:{frame_info.f_back.f_lineno}' if SFL else f'L:{frame_info.f_back.f_lineno}'
+        print_Color(f'\n~*--> ~*DEBUG INFO id: ~*[{str(ID)}]~*, Location: ~*[{location}]~*, time: ~*[{datetime.now().strftime("%Y/%m/%d | %H:%M:%S")}]\n~*--> ~*Data: ~*{str(DEBUG_IF)}\n', ['red', 'magenta', 'yellow', 'magenta', 'yellow', 'magenta', 'yellow', 'red', 'magenta', 'yellow'], advanced_mode=True)
 #load modules
 def LCM():
     #Get Import List
@@ -97,13 +104,16 @@ def main():
         input_array = CLI_IM()
         command = input_array[0]
         global CMLI_args
-        global Debug
+        global Debug_m
         try:
             CMLI_args = input_array[1:]
         except IndexError:
             CMLI_args = []
         if command in command_mappings:
-            
+            Debug('command_IC', command)
+            Debug('command_mappings', command_mappings)
+            Debug('CMLI_args', CMLI_args)
+            Debug('imported_modules', imported_modules)
             filename, funcname, argnames = command_mappings[command]
             module_name = os.path.splitext(filename)[0]
             args = [globals()[argname] for argname in argnames]
@@ -116,8 +126,8 @@ def main():
                 case 'exit':
                     raise KeyboardInterrupt
                 case 'debug':
-                    Debug = lambda DEBUG_IF : print('DEBUG INFO{' + str(DEBUG_IF) + '}')
                     print('Debug mode is ON...')
+                    Debug_m = True
                 case _:
                     IEH(id = 'F[main],L1[WT],L2[MI],Error[nothing matched]', stop = False, DEV = False)
 #start>>>
