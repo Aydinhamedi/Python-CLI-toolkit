@@ -30,7 +30,6 @@ cmd_descriptions = {
     'help': 'Show the help menu with the list of all available commands'
 }
 cmd_descriptions_other = {
-    'add': 'add',
     'exit': 'Quit the CLI',
     'clear': 'Clear the CLI'
 }
@@ -165,7 +164,8 @@ def main():
                     print('Debug mode is ON...')
                     Debug_m = True
                 case _:
-                    IEH(id = 'F[main],L1[WT],L2[MI],Error[nothing matched]', stop = False, DEV = False)
+                    # IEH(id = 'F[main],L1[WT],L2[MI],Error[nothing matched]', stop = False, DEV = False)
+                    pass
 #start>>>
 if __name__ == '__main__':
     #clear the 'start L1' prompt
