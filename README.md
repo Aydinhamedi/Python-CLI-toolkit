@@ -10,7 +10,7 @@ This Python CLI Toolkit is a powerful tool for creating command-line interfaces 
 ![Example](Screenshot.png)  
 
 > **Note**\
->  Please note that this image is for a project using the template.
+>  Please note that this image is for a project using the Template/Toolkit.
 
 >  **Note**\
 >  Please note that this code uses my print_color\
