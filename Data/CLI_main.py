@@ -167,22 +167,23 @@ def main():
                 case _:
                     IEH(id = 'F[main],L1[WT],L2[MI],Error[nothing matched]', stop = False, DEV = False)
 #start>>>
-#clear the 'start L1' prompt
-print('                  ', end='\r')
-#Start INFO
-VER = f'V{CLI_Ver}' + datetime.now().strftime(" CDT(%Y/%m/%d | %H:%M:%S)")
-#CLI_Info
-CLI_Info = f'{CLI_NAME} Ver: {VER} \nPython Ver: {sys.version} \nType \'help\' for more information.'
-print(CLI_Info)
-#start main
-try:
+if __name__ == '__main__':
+    #clear the 'start L1' prompt
+    print('                  ', end='\r')
+    #Start INFO
+    VER = f'V{CLI_Ver}' + datetime.now().strftime(" CDT(%Y/%m/%d | %H:%M:%S)")
+    #CLI_Info
+    CLI_Info = f'{CLI_NAME} Ver: {VER} \nPython Ver: {sys.version} \nType \'help\' for more information.'
+    print(CLI_Info)
+    #start main
     try:
-        LCM()
-        main()
-    except (EOFError, KeyboardInterrupt):
-        pass
-except Exception as e:
-    IEH(id=f'F[SYS],RF[main],Error[{e}]', DEV=True)
-else:
-    print_Color(f'\n~*[{CLI_NAME} CLI] ~*closed.', ['yellow', 'red'], advanced_mode=True)
+        try:
+            LCM()
+            main()
+        except (EOFError, KeyboardInterrupt):
+            pass
+    except Exception as e:
+        IEH(id=f'F[SYS],RF[main],Error[{e}]', DEV=True)
+    else:
+        print_Color(f'\n~*[{CLI_NAME} CLI] ~*closed.', ['yellow', 'red'], advanced_mode=True)
 #end(EOF) 
